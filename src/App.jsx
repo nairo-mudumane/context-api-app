@@ -1,18 +1,16 @@
 import React from 'react';
+import Login from './components/Login';
 import Profile from './components/Profile';
 import { useAuth } from './providers/Auths';
 function App() {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   console.log(user);
-
   return (
     <div>
-      Ola mundo
-      <input
-        type="text"
-        onChange={({ target }) => setUser({ name: target.value })}
-      />
+      <h2>useContext</h2>
+
       <Profile />
+      <Login />
     </div>
   );
 }

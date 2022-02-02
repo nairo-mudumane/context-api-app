@@ -3,10 +3,10 @@ import React from 'react';
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = (props) => {
-  const [user, setUser] = React.useState();
+  const [user, setUser] = React.useState({ name: '' });
 
   React.useEffect(() => {
-    const localUser = window.localStorage.getItem('user');
+    const localUser = localStorage.getItem('user');
     if (localUser) {
       setUser(JSON.parse(localUser));
     } else {
