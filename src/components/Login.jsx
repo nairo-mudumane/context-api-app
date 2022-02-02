@@ -11,6 +11,11 @@ export default function Login() {
     setUser(newUser);
   }
 
+  function handleLogout() {
+    window.localStorage.removeItem('user');
+    setUser('');
+  }
+
   return (
     <div>
       <input
@@ -19,6 +24,7 @@ export default function Login() {
         onChange={({ target }) => setForm(target.value)}
       />
       <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
