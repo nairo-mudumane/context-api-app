@@ -3,9 +3,17 @@ import React from 'react';
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = (props) => {
-  const [user, setUser] = React.useState({
-    user: 'Name',
-  });
+  const [user, setUser] = React.useState();
+
+  React.useEffect(() => {
+    const localUser = window.localStorage.getItem('user');
+    if (localUser) {
+      setUser(JSON.parse(localUser));
+    } else {
+      setUser({ name: '' });
+    }
+  }, []);
+
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {props.children}
@@ -13,4 +21,4 @@ export const AuthProvider = (props) => {
   );
 };
 
-export const useAuth = React.useContext(AuthContext);
+export const useAuth = () => React.useContext(AuthContext);
